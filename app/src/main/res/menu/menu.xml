@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+   <group android:checkableBehavior="single">
+
+       <item
+           android:id="@+id/translationFragment"
+           android:icon="@drawable/menu1"
+           android:title="Translate Text" />
+       <item
+           android:id="@+id/secondtItem"
+           android:icon="@drawable/menu2"
+           android:title="Saved Translations" />
+       <item
+           android:id="@+id/thirdItem"
+           android:icon="@drawable/menu3"
+
+           android:title="Settings" />
+
+   </group>
+
+</menu>

@@ -7,13 +7,9 @@ import androidx.lifecycle.viewModelScope
 import com.example.translatorapp_mvvm_kotlin.model.Constants
 import com.example.translatorapp_mvvm_kotlin.model.LanguageModel
 import com.example.translatorapp_mvvm_kotlin.model.apiService.TextToSpeechAPIInterface
-import com.example.translatorapp_mvvm_kotlin.model.apiService.TextToSpeechAPIInterface.Companion.gson
-import com.example.translatorapp_mvvm_kotlin.model.dto.TextToSpeechBodyObject
-import com.google.gson.Gson
 import com.google.gson.JsonSyntaxException
 import kotlinx.coroutines.launch
-import okhttp3.MediaType
-import okhttp3.RequestBody
+
 
 class LanguagesViewModel : ViewModel() {
     var languageListLive: MutableLiveData<MutableList<LanguageModel>> = MutableLiveData()
@@ -21,9 +17,7 @@ class LanguagesViewModel : ViewModel() {
 
     init {
         setLanguages()
-        viewModelScope.launch {
-            getTextToSpeech()
-        }
+
     }
 
     private fun setLanguages() {
@@ -37,10 +31,16 @@ class LanguagesViewModel : ViewModel() {
         languageListLive.value = list
     }
 
-    private suspend fun getTextToSpeech() {
+    fun passDataToSpeech(languageCode:String,textToPass:String){
+        Log.d("DataSendAre","$languageCode and $textToPass")
+//        viewModelScope.launch {
+//            getTextToSpeech(languageCode,textToPass)
+//        }
+    }
+    private suspend fun getTextToSpeech(languageCode:String,textToPass:String) {
         val response = apiInterface.getTextToSpeech(
-            text = "Hello",
-            language_code = "en-GB",
+            text = textToPass,
+            language_code = languageCode,
             fileType = "mp3",
             speed = -4,
             key = Constants.TEXT_TO_SPEECH_API_KEY,

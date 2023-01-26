@@ -9,6 +9,7 @@ import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
 import com.example.translatorapp_mvvm_kotlin.databinding.FragmentTranslationBinding
 import com.example.translatorapp_mvvm_kotlin.viewModel.LanguagesViewModel
@@ -86,7 +87,14 @@ class TranslationFragment : Fragment() {
             )
         }
         binding.speechFrom.setOnClickListener {
-
+            viewModel.getTextToTranslate().observe(viewLifecycleOwner){
+                val selectedLanguageCode=sharedViewModel.getSelectedFromCode()
+                val typedText=it
+                languageViewModel.passDataToSpeech(
+                    selectedLanguageCode.value.toString(),
+                    typedText
+                )
+            }
         }
         binding.speechTo.setOnClickListener {
 

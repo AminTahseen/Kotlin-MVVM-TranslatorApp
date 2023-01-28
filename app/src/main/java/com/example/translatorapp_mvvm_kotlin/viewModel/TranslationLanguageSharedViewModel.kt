@@ -3,17 +3,18 @@ package com.example.translatorapp_mvvm_kotlin.viewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.translatorapp_mvvm_kotlin.model.Constants
 
 
 class TranslationLanguageSharedViewModel : ViewModel() {
     private val selectedTo = MutableLiveData(0)
     private val selectedFrom = MutableLiveData(0)
 
-    private val selectedToCode = MutableLiveData("en-GB")
-    private val selectedToText = MutableLiveData("English")
+    private val selectedToCode = MutableLiveData(Constants.countryCodeList[0])
+    private val selectedToText = MutableLiveData(Constants.countryNameList[0])
 
-    private val selectedFromCode = MutableLiveData("en-GB")
-    private val selectedFromText = MutableLiveData("English")
+    private val selectedFromCode = MutableLiveData(Constants.countryCodeList[0])
+    private val selectedFromText = MutableLiveData(Constants.countryNameList[0])
 
     fun selectTo(item: Int) {
         selectedTo.value = item
@@ -29,19 +30,19 @@ class TranslationLanguageSharedViewModel : ViewModel() {
         selectedFromText.value = text
     }
 
-    fun getSelectedToCode():LiveData<String>{
+    fun getSelectedToCode(): LiveData<String> {
         return selectedToCode
     }
 
-    fun getSelectedFromCode():LiveData<String>{
+    fun getSelectedFromCode(): LiveData<String> {
         return selectedFromCode
     }
 
-    fun getSelectedToText():LiveData<String> {
+    fun getSelectedToText(): LiveData<String> {
         return selectedToText
     }
 
-    fun getSelectedFromText():LiveData<String> {
+    fun getSelectedFromText(): LiveData<String> {
         return selectedFromText
     }
 

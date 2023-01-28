@@ -7,6 +7,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.translatorapp_mvvm_kotlin.model.apiService.APIInterface
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
 
 class TranslationViewModel(
@@ -14,10 +16,10 @@ class TranslationViewModel(
 ):ViewModel() {
     private val textToTranslate: MutableLiveData<String> = MutableLiveData("")
     private val loading: MutableLiveData<Boolean> = MutableLiveData(false)
-    private val errorMessage: MutableLiveData<String> = MutableLiveData("")
+    private val _errorMessage= MutableSharedFlow<String>()
+    val errorMessage=_errorMessage.asSharedFlow()
 
     private val translatedText: MutableLiveData<String> = MutableLiveData("")
-
 
     fun setTextToTranslate(value:String){
         textToTranslate.value=value
@@ -31,12 +33,13 @@ class TranslationViewModel(
     fun getLoading():LiveData<Boolean>{
         return loading
     }
-    fun getErrorMessage():LiveData<String>{
-        return errorMessage
-    }
     fun translateText(langFrom:String,langTo:String){
         when(textToTranslate.value){
-            ""-> errorMessage.value="Text cannot be empty !"
+            ""-> {
+                viewModelScope.launch {
+                    sendErrorMessage("Text cannot be empty !")
+                }
+            }
             else->{
                 viewModelScope.launch(Dispatchers.IO) {
                     val langPair="$langFrom|$langTo"
@@ -44,6 +47,9 @@ class TranslationViewModel(
                 }
             }
         }
+    }
+    private suspend fun sendErrorMessage(message:String){
+        _errorMessage.emit(message)
     }
     private suspend fun getTranslateText(langPair:String){
         loading.postValue(true)

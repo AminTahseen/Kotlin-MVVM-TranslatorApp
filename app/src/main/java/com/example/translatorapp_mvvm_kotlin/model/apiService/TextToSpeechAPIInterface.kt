@@ -15,6 +15,7 @@ import retrofit2.http.*
 interface TextToSpeechAPIInterface {
 
     @GET(".")
+    @Headers("Content-Type: application/json")
     suspend fun getTextToSpeech(
         @Query("key") key: String,
         @Query("rapidapi-key") rapidApiKey: String,

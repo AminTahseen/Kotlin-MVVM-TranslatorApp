@@ -1,12 +1,10 @@
 package com.example.translatorapp_mvvm_kotlin.view
 
-import android.graphics.Color
 import android.os.Bundle
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.DrawableCompat
 import androidx.core.widget.addTextChangedListener
@@ -65,15 +63,7 @@ class TranslationFragment : Fragment() {
                     true -> {
                     }
                     else -> {
-                        binding.speechTo.imageAlpha =
-                            255 // 0 being transparent and 255 being opaque
-                        binding.speechTo.isEnabled = true
-                        binding.speechFrom.imageAlpha =
-                            255 // 0 being transparent and 255 being opaque
-                        binding.speechFrom.isEnabled = true
-                        setImageButtonColor(binding.speechFrom, R.color.purple_500)
-                        setImageButtonColor(binding.speechTo, R.color.purple_500)
-
+                        setSelectedSpeechColor(fromSpeech = "Default".lowercase())
                     }
                 }
             }
@@ -98,9 +88,11 @@ class TranslationFragment : Fragment() {
     private fun setChangeListeners() {
         sharedViewModel.getSelectedFromText().observe(viewLifecycleOwner) {
             binding.translateTextFrom.text = it
+            binding.languageFromHeader.text = it
         }
         sharedViewModel.getSelectedToText().observe(viewLifecycleOwner) {
             binding.translateTextTo.text = it
+            binding.languageToHeader.text = it
         }
     }
 
@@ -125,10 +117,7 @@ class TranslationFragment : Fragment() {
             )
         }
         binding.speechFrom.setOnClickListener {
-            binding.speechTo.imageAlpha = 75 // 0 being transparent and 255 being opaque
-            binding.speechTo.isEnabled = false
-
-            setImageButtonColor(binding.speechFrom, R.color.teal_700)
+            setSelectedSpeechColor(fromSpeech = "From".lowercase())
             val selectedLanguageCode = sharedViewModel.getSelectedFromCode()
             val typedText = viewModel.getTextToTranslate().value
             typedText?.let { it1 ->
@@ -139,11 +128,9 @@ class TranslationFragment : Fragment() {
             }
         }
         binding.speechTo.setOnClickListener {
-            binding.speechFrom.imageAlpha = 75 // 0 being transparent and 255 being opaque
-            binding.speechFrom.isEnabled = false
-            setImageButtonColor(binding.speechTo, R.color.teal_700)
+            setSelectedSpeechColor(fromSpeech = "To".lowercase())
             val selectedLanguageCode = sharedViewModel.getSelectedToCode()
-            val translatedText =viewModel.getTranslatedText().value
+            val translatedText = viewModel.getTranslatedText().value
             translatedText?.let { it1 ->
                 languageViewModel.passDataToSpeech(
                     selectedLanguageCode.value.toString(),
@@ -153,11 +140,103 @@ class TranslationFragment : Fragment() {
         }
     }
 
-    private fun setImageButtonColor(imageButton: ImageButton, color: Int) {
-        DrawableCompat.setTint(
-            DrawableCompat.wrap(imageButton.drawable),
-            ContextCompat.getColor(requireContext(), color)
-        )
+    private fun setSelectedSpeechColor(fromSpeech: String) {
+        when (fromSpeech) {
+            "From".lowercase() -> {
+                // from section Colors
+                binding.fromMainLinear.setBackgroundColor(
+                    ContextCompat.getColor(requireContext(), R.color.purple_500)
+                )
+                binding.languageFromHeader.setTextColor(
+                    ContextCompat.getColor(requireContext(), R.color.white)
+                )
+                DrawableCompat.setTint(
+                    DrawableCompat.wrap(binding.fromMainLinearCopy.drawable),
+                    ContextCompat.getColor(requireContext(), R.color.white)
+                )
+                binding.textFrom.setTextColor(
+                    ContextCompat.getColor(requireContext(), R.color.white)
+                )
 
+                // to section Colors
+                binding.toMainLinear.setBackgroundColor(
+                    ContextCompat.getColor(requireContext(), R.color.white)
+                )
+                binding.languageToHeader.setTextColor(
+                    ContextCompat.getColor(requireContext(), R.color.black)
+                )
+                DrawableCompat.setTint(
+                    DrawableCompat.wrap(binding.toMainLinearCopy.drawable),
+                    ContextCompat.getColor(requireContext(), R.color.greyColor)
+                )
+                binding.textTo.setTextColor(
+                    ContextCompat.getColor(requireContext(), R.color.black)
+                )
+
+            }
+            "To".lowercase() -> {
+                // to section Colors
+                binding.toMainLinear.setBackgroundColor(
+                    ContextCompat.getColor(requireContext(), R.color.purple_500)
+                )
+                binding.languageToHeader.setTextColor(
+                    ContextCompat.getColor(requireContext(), R.color.white)
+                )
+                DrawableCompat.setTint(
+                    DrawableCompat.wrap(binding.toMainLinearCopy.drawable),
+                    ContextCompat.getColor(requireContext(), R.color.white)
+                )
+                binding.textTo.setTextColor(
+                    ContextCompat.getColor(requireContext(), R.color.white)
+                )
+
+                // from section Colors
+                binding.fromMainLinear.setBackgroundColor(
+                    ContextCompat.getColor(requireContext(), R.color.white)
+                )
+                binding.languageFromHeader.setTextColor(
+                    ContextCompat.getColor(requireContext(), R.color.black)
+                )
+                DrawableCompat.setTint(
+                    DrawableCompat.wrap(binding.fromMainLinearCopy.drawable),
+                    ContextCompat.getColor(requireContext(), R.color.greyColor)
+                )
+                binding.textFrom.setTextColor(
+                    ContextCompat.getColor(requireContext(), R.color.black)
+                )
+            }
+            else->{
+                // from section Colors
+                binding.fromMainLinear.setBackgroundColor(
+                    ContextCompat.getColor(requireContext(), R.color.white)
+                )
+                binding.languageFromHeader.setTextColor(
+                    ContextCompat.getColor(requireContext(), R.color.black)
+                )
+                DrawableCompat.setTint(
+                    DrawableCompat.wrap(binding.fromMainLinearCopy.drawable),
+                    ContextCompat.getColor(requireContext(), R.color.greyColor)
+                )
+                binding.textFrom.setTextColor(
+                    ContextCompat.getColor(requireContext(), R.color.black)
+                )
+
+                // to section Colors
+                binding.toMainLinear.setBackgroundColor(
+                    ContextCompat.getColor(requireContext(), R.color.white)
+                )
+                binding.languageToHeader.setTextColor(
+                    ContextCompat.getColor(requireContext(), R.color.black)
+                )
+                DrawableCompat.setTint(
+                    DrawableCompat.wrap(binding.toMainLinearCopy.drawable),
+                    ContextCompat.getColor(requireContext(), R.color.greyColor)
+                )
+                binding.textTo.setTextColor(
+                    ContextCompat.getColor(requireContext(), R.color.black)
+                )
+
+            }
+        }
     }
 }

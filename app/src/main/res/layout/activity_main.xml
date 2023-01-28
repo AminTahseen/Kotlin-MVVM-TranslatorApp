@@ -7,10 +7,10 @@
     tools:context=".view.MainActivity">
 
     <ImageView
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
         android:scaleType="fitCenter"
-        android:src="@drawable/appicon"
+        android:src="@drawable/translate_symbol_logo"
         app:layout_constraintBottom_toTopOf="@+id/textView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

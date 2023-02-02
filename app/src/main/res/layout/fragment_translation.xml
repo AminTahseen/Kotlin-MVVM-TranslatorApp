@@ -274,6 +274,7 @@
             app:tint="@null" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/mic_speak"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:fabCustomSize="80dp"

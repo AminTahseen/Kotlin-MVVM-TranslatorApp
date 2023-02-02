@@ -48,7 +48,7 @@ class TranslationFragment : Fragment() {
             viewModel.setTextToTranslate(it.toString())
         }
         lifecycleScope.launchWhenStarted {
-            viewModel.errorMessage.collectLatest {
+            viewModel.message.collectLatest {
                 Snackbar.make(binding.root, it, Snackbar.LENGTH_SHORT).show()
             }
         }
@@ -138,8 +138,15 @@ class TranslationFragment : Fragment() {
                 )
             }
         }
+        binding.fromMainLinearCopy.setOnClickListener {
+            val textToCopy=binding.textFrom.text.toString()
+            activity?.applicationContext?.let { it1 -> viewModel.copyText(textToCopy, it1) }
+        }
+        binding.toMainLinearCopy.setOnClickListener {
+            val textToCopy=binding.textTo.text.toString()
+            activity?.applicationContext?.let { it1 -> viewModel.copyText(textToCopy, it1) }
+        }
     }
-
     private fun setSelectedSpeechColor(fromSpeech: String) {
         when (fromSpeech) {
             "From".lowercase() -> {

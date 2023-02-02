@@ -1,6 +1,12 @@
 package com.example.translatorapp_mvvm_kotlin.viewModel
 
+import android.R.attr.label
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
+import android.content.Context.CLIPBOARD_SERVICE
 import android.util.Log
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -11,13 +17,14 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
 
+
 class TranslationViewModel(
     private var apiInterface: APIInterface=APIInterface.getInstance()
 ):ViewModel() {
     private val textToTranslate: MutableLiveData<String> = MutableLiveData("")
     private val loading: MutableLiveData<Boolean> = MutableLiveData(false)
-    private val _errorMessage= MutableSharedFlow<String>()
-    val errorMessage=_errorMessage.asSharedFlow()
+    private val _message= MutableSharedFlow<String>()
+    val message=_message.asSharedFlow()
 
     private val translatedText: MutableLiveData<String> = MutableLiveData("")
 
@@ -37,7 +44,7 @@ class TranslationViewModel(
         when(textToTranslate.value){
             ""-> {
                 viewModelScope.launch {
-                    sendErrorMessage("Text cannot be empty !")
+                    sendMessage("Text cannot be empty !")
                 }
             }
             else->{
@@ -48,8 +55,17 @@ class TranslationViewModel(
             }
         }
     }
-    private suspend fun sendErrorMessage(message:String){
-        _errorMessage.emit(message)
+    fun copyText(textToCopy:String,context:Context){
+        Log.d("CopiedText",textToCopy)
+        var myClipboard = getSystemService(context!!, ClipboardManager::class.java) as ClipboardManager
+        val clip: ClipData = ClipData.newPlainText("copied text", textToCopy)
+        myClipboard.setPrimaryClip(clip)
+        viewModelScope.launch {
+            sendMessage("Text copied to clipboard")
+        }
+    }
+    private suspend fun sendMessage(message:String){
+        _message.emit(message)
     }
     private suspend fun getTranslateText(langPair:String){
         loading.postValue(true)

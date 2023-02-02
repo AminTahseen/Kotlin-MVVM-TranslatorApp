@@ -3,7 +3,6 @@ package com.example.translatorapp_mvvm_kotlin.viewModel
 import android.media.AudioAttributes
 import android.media.MediaPlayer
 import android.util.Log
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

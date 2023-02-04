@@ -40,6 +40,7 @@
                 android:textStyle="bold" />
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
+               android:id="@+id/exchange_translations"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"

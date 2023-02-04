@@ -8,7 +8,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.translatorapp_mvvm_kotlin.model.Constants
 import com.example.translatorapp_mvvm_kotlin.model.LanguageModel
-import com.example.translatorapp_mvvm_kotlin.model.apiService.TextToSpeechAPIInterface
+import com.example.translatorapp_mvvm_kotlin.model.server.apiService.TextToSpeechAPIInterface
 import com.google.gson.JsonSyntaxException
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow

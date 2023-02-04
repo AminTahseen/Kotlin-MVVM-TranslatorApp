@@ -1,7 +1,7 @@
-package com.example.translatorapp_mvvm_kotlin.model.apiService
+package com.example.translatorapp_mvvm_kotlin.model.server.apiService
 
 import com.example.translatorapp_mvvm_kotlin.model.Constants
-import com.example.translatorapp_mvvm_kotlin.model.dto.TranslatedTextDTO
+import com.example.translatorapp_mvvm_kotlin.model.server.dto.TranslatedTextDTO
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

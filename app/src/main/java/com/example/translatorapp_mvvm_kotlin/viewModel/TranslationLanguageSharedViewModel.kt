@@ -57,4 +57,24 @@ class TranslationLanguageSharedViewModel : ViewModel() {
     fun getSelectedFrom(): LiveData<Int>? {
         return selectedFrom
     }
+    fun exchangeLanguage(){
+        /*
+        * selectedTo, selectedFrom
+        * selectedToCode selectedFromCode
+        * selectedToText selectedFromText
+        * */
+        val selectedToVal=selectedTo.value
+        val selectedToCodeVal=selectedToCode.value
+        val selectedToTextVal=selectedToText.value
+
+        selectedTo.value=selectedFrom.value
+        selectedToCode.value=selectedFromCode.value
+        selectedToText.value=selectedFromText.value
+
+        selectedFrom.value=selectedToVal
+        selectedFromCode.value=selectedToCodeVal
+        selectedFromText.value=selectedToTextVal
+
+
+    }
 }

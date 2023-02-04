@@ -9,7 +9,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.translatorapp_mvvm_kotlin.model.apiService.APIInterface
+import com.example.translatorapp_mvvm_kotlin.model.server.apiService.APIInterface
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
@@ -17,7 +17,7 @@ import kotlinx.coroutines.launch
 
 
 class TranslationViewModel(
-    private var apiInterface: APIInterface=APIInterface.getInstance()
+    private var apiInterface: APIInterface = APIInterface.getInstance()
 ):ViewModel() {
     private val textToTranslate: MutableLiveData<String> = MutableLiveData("")
     private val loading: MutableLiveData<Boolean> = MutableLiveData(false)

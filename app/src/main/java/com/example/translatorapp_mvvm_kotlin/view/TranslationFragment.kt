@@ -10,7 +10,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.DrawableCompat
 import androidx.core.widget.addTextChangedListener
@@ -34,7 +33,6 @@ class TranslationFragment : Fragment() {
     private lateinit var sharedViewModel: TranslationLanguageSharedViewModel
     private lateinit var viewModel: TranslationViewModel
     private lateinit var languageViewModel: LanguagesViewModel
-    private val REQUEST_CODE_SPEECH_INPUT = 1
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -153,6 +151,9 @@ class TranslationFragment : Fragment() {
         }
         binding.micSpeak.setOnClickListener {
             speechToText()
+        }
+        binding.exchangeTranslations.setOnClickListener {
+            sharedViewModel.exchangeLanguage()
         }
     }
     private fun speechToText(){

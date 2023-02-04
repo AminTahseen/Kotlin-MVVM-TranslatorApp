@@ -1,4 +1,4 @@
-package com.example.translatorapp_mvvm_kotlin.model.apiService
+package com.example.translatorapp_mvvm_kotlin.model.server.apiService
 
 import com.example.translatorapp_mvvm_kotlin.model.Constants
 import com.google.gson.Gson

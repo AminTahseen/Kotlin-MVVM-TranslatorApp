@@ -1,4 +1,4 @@
-package com.example.translatorapp_mvvm_kotlin.model.dto
+package com.example.translatorapp_mvvm_kotlin.model.server.dto
 
 
 data class TextToSpeechBodyObject(

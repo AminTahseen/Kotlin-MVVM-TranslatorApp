@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/frameLayout"
@@ -7,302 +7,309 @@
     android:layout_height="match_parent"
     tools:context=".view.TranslationFragment">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/languageCard"
-        android:layout_margin="10dp"
-        android:elevation="8dp"
-        app:cardElevation="10dp"
-        app:cardCornerRadius="10dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="match_parent">
 
-        <LinearLayout
-            android:padding="10dp"
-            android:id="@+id/linearLayout"
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/languageCard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:weightSum="5">
+            android:layout_margin="10dp"
+            android:elevation="8dp"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-
-            <TextView
-                android:id="@+id/translateTextFrom"
-                android:layout_width="0dp"
+            <LinearLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:text="English"
-                android:textAlignment="textEnd"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="10dp"
+                android:weightSum="5">
 
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-               android:id="@+id/exchange_translations"
-                android:layout_width="0dp"
+
+                <TextView
+                    android:id="@+id/translateTextFrom"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="English"
+                    android:textAlignment="textEnd"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/exchange_translations"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_weight="1"
+                    android:src="@drawable/replace"
+                    app:backgroundTint="@color/purple_500"
+                    app:borderWidth="0dp"
+                    app:elevation="6dp"
+                    app:tint="@null" />
+
+                <TextView
+                    android:id="@+id/translateTextTo"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="English"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical"
+            android:paddingBottom="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/languageCard">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="30dp"
-                android:layout_weight="1"
-                android:src="@drawable/replace"
-                app:backgroundTint="@color/purple_500"
+                android:layout_margin="10dp"
+                android:background="@drawable/translation_text_bg"
+                android:elevation="8dp"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="10dp">
+
+                <LinearLayout
+                    android:id="@+id/fromMainLinear"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="10dp"
+                        android:orientation="horizontal"
+                        android:weightSum="2">
+
+                        <TextView
+                            android:id="@+id/languageFromHeader"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:text="Language 1"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <ImageButton
+                            android:id="@+id/fromMainLinear_copy"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@android:color/transparent"
+                            android:src="@drawable/copy" />
+
+                    </LinearLayout>
+
+                    <EditText
+                        android:id="@+id/textFrom"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="10dp"
+                        android:background="@null"
+                        android:gravity="top"
+                        android:hint="Type something..."
+                        android:textColor="@color/black"
+                        android:textSize="16sp" />
+
+                    <ImageButton
+                        android:id="@+id/speechFrom"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="20dp"
+                        android:background="@null"
+                        android:src="@drawable/speak" />
+
+
+                </LinearLayout>
+
+
+            </androidx.cardview.widget.CardView>
+
+            <Button
+                android:id="@+id/translateBTN"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:drawableTop="@drawable/translate_symbol"
+                android:padding="10dp"
+                android:src="@drawable/translate_symbol"
+                android:text="Translate"
+                android:visibility="visible"
+                app:backgroundTint="@color/purple_700"
                 app:borderWidth="0dp"
                 app:elevation="6dp"
                 app:tint="@null" />
 
-            <TextView
-                android:id="@+id/translateTextTo"
-                android:layout_width="0dp"
+            <ProgressBar
+                android:id="@+id/progress_circular"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:text="English"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:indeterminateTint="@color/purple_500"
+                android:visibility="gone" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/translation_text_bg"
+                android:elevation="8dp"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="10dp">
+
+                <LinearLayout
+                    android:id="@+id/toMainLinear"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:background="@drawable/translation_text_bg"
+                    android:orientation="vertical"
+                    app:cardCornerRadius="10dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="10dp"
+                        android:orientation="horizontal"
+                        android:weightSum="2">
+
+                        <TextView
+                            android:id="@+id/languageToHeader"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:text="Language 2"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <ImageButton
+                            android:id="@+id/toMainLinear_copy"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@android:color/transparent"
+                            android:src="@drawable/copy" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/textTo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="10dp"
+                        android:background="@null"
+                        android:gravity="top"
+                        android:hint="Translated text..."
+                        android:textColor="@color/black"
+                        android:textSize="16sp" />
+
+                    <ImageButton
+                        android:id="@+id/speechTo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="20dp"
+                        android:background="@null"
+                        android:src="@drawable/speak" />
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
         </LinearLayout>
 
-    </androidx.cardview.widget.CardView>
-
-    <LinearLayout
-        android:id="@+id/linearLayout2"
-
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:orientation="vertical"
-        android:paddingBottom="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/languageCard">
-
-        <androidx.cardview.widget.CardView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:background="@drawable/translation_text_bg"
-            android:elevation="8dp"
-            app:cardCornerRadius="10dp"
-            app:cardElevation="10dp">
-
-            <LinearLayout
-                android:id="@+id/fromMainLinear"
-                android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="10dp"
-                    android:orientation="horizontal"
-                    android:weightSum="2">
-
-                    <TextView
-                        android:id="@+id/languageFromHeader"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:text="Language 1"
-                        android:textSize="16sp"
-                        android:textColor="@color/black"
-                        android:textStyle="bold" />
-
-                    <ImageButton
-                        android:id="@+id/fromMainLinear_copy"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@android:color/transparent"
-                        android:src="@drawable/copy" />
-
-                </LinearLayout>
-
-                <EditText
-                    android:id="@+id/textFrom"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="10dp"
-                    android:background="@null"
-                    android:textColor="@color/black"
-                    android:gravity="top"
-                    android:hint="Type something..."
-                    android:textSize="16sp" />
-
-                <ImageButton
-                    android:id="@+id/speechFrom"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="20dp"
-                    android:background="@null"
-                    android:src="@drawable/speak" />
-
-
-            </LinearLayout>
-
-
-        </androidx.cardview.widget.CardView>
-
-        <Button
-            android:id="@+id/translateBTN"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Translate"
-            android:layout_margin="10dp"
-            android:drawableTop="@drawable/translate_symbol"
+            android:gravity="center"
+            android:orientation="horizontal"
             android:padding="10dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:src="@drawable/translate_symbol"
-            android:visibility="visible"
-            app:backgroundTint="@color/purple_700"
-            app:borderWidth="0dp"
-            app:elevation="6dp"
-            app:tint="@null" />
+            android:weightSum="3"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
 
-        <ProgressBar
-            android:id="@+id/progress_circular"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_margin="10dp"
-            android:indeterminateTint="@color/purple_500"
-            android:visibility="gone" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:background="@drawable/translation_text_bg"
-            android:elevation="8dp"
-            app:cardCornerRadius="10dp"
-            app:cardElevation="10dp">
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/saveTranslation"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginBottom="5dp"
+                android:layout_weight="1"
+                android:src="@drawable/bookmark"
+                app:backgroundTint="@color/white"
+                app:borderWidth="0dp"
+                app:elevation="6dp"
+                app:tint="@null" />
 
-            <LinearLayout
-                android:id="@+id/toMainLinear"
-                android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:background="@drawable/translation_text_bg"
-                android:orientation="vertical"
-                app:cardCornerRadius="10dp">
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/mic_speak"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:scaleType="fitCenter"
+                android:src="@drawable/mic"
+                app:backgroundTint="@color/purple_500"
+                app:borderWidth="0dp"
+                app:elevation="6dp"
+                app:fabCustomSize="80dp"
+                app:fabSize="auto"
+                app:maxImageSize="40dp"
+                app:tint="@null" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="10dp"
-                    android:orientation="horizontal"
-                    android:weightSum="2">
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginBottom="5dp"
+                android:layout_weight="1"
 
-                    <TextView
-                        android:id="@+id/languageToHeader"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:text="Language 2"
-                        android:textSize="16sp"
-                        android:textColor="@color/black"
-                        android:textStyle="bold" />
-
-                    <ImageButton
-                        android:id="@+id/toMainLinear_copy"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@android:color/transparent"
-                        android:src="@drawable/copy" />
-
-                </LinearLayout>
-
-                <TextView
-                    android:id="@+id/textTo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="10dp"
-                    android:background="@null"
-                    android:gravity="top"
-                    android:textColor="@color/black"
-                    android:hint="Translated text..."
-                    android:textSize="16sp" />
-
-                <ImageButton
-                    android:id="@+id/speechTo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="20dp"
-                    android:background="@null"
-                    android:src="@drawable/speak" />
-
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:padding="10dp"
-        android:weightSum="3"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:layout_marginBottom="5dp"
-            android:layout_weight="1"
-            android:src="@drawable/bookmark"
-            app:backgroundTint="@color/white"
-            app:borderWidth="0dp"
-            app:elevation="6dp"
-            app:tint="@null" />
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/mic_speak"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:fabCustomSize="80dp"
-            android:scaleType="fitCenter"
-            android:layout_weight="1"
-            android:src="@drawable/mic"
-            app:backgroundTint="@color/purple_500"
-            app:borderWidth="0dp"
-            app:maxImageSize="40dp"
-            app:elevation="6dp"
-            app:fabSize="auto"
-            app:tint="@null" />
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:layout_weight="1"
-            android:layout_marginBottom="5dp"
-
-            android:src="@drawable/camera"
-            app:backgroundTint="@color/white"
-            app:borderWidth="0dp"
-            app:elevation="6dp"
-            app:tint="@null" />
+                android:src="@drawable/camera"
+                app:backgroundTint="@color/white"
+                app:borderWidth="0dp"
+                app:elevation="6dp"
+                app:tint="@null" />
 
 
-    </LinearLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

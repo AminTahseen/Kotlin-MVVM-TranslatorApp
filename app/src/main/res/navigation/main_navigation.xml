@@ -9,20 +9,24 @@
         android:id="@+id/translationFragment"
         android:name="com.example.translatorapp_mvvm_kotlin.view.TranslationFragment"
         android:label="Translate Text"
-        tools:layout="@layout/fragment_translation" >
+        tools:layout="@layout/fragment_translation">
         <action
             android:id="@+id/action_translationFragment_to_languagesFragment"
-            app:destination="@id/languagesFragment">
-        </action>
+            app:destination="@id/languagesFragment"></action>
     </fragment>
     <fragment
         android:id="@+id/languagesFragment"
         android:name="com.example.translatorapp_mvvm_kotlin.view.LanguagesFragment"
         android:label="Select Language"
-        tools:layout="@layout/fragment_languages" >
+        tools:layout="@layout/fragment_languages">
         <argument
             android:name="translateFromTo"
             app:argType="string"
             android:defaultValue="From" />
     </fragment>
+    <fragment
+        android:id="@+id/bookMarkedTranslationsFragment"
+        android:name="com.example.translatorapp_mvvm_kotlin.view.BookMarkedTranslationsFragment"
+        android:label="Saved Translations"
+        tools:layout="@layout/fragment_book_marked_translations" />
 </navigation>

@@ -29,8 +29,8 @@ class LanguagesAdapter(
     override fun onBindViewHolder(holder: LanguageHolder, position: Int) {
         holder.viewBinding.textView2.text = languageList[position].languageText
         selectedPosition = when(selectedPositionFor){
-            "From"-> sharedViewModel?.getSelectedFrom()?.value!!
-            else-> sharedViewModel?.getSelectedTo()?.value!!
+            "From"-> sharedViewModel.getSelectedFrom()?.value!!
+            else-> sharedViewModel.getSelectedTo()?.value!!
         }
         when (selectedPosition) {
             position -> {

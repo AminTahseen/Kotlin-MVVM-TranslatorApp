@@ -58,7 +58,7 @@ class LanguagesViewModel : ViewModel() {
             b64 = false,
         )
         try {
-            if (response.isSuccessful && response != null) {
+            if (response.isSuccessful) {
                 _loading.emit(false)
                 Log.d("textToSpeechResponse", "success")
                 Log.d("textToSpeechResponse", response.toString())
@@ -89,7 +89,7 @@ class LanguagesViewModel : ViewModel() {
     }
 
     private fun playAudio(url: String) {
-        val mediaPlayer = MediaPlayer().apply {
+        MediaPlayer().apply {
             setAudioAttributes(
                 AudioAttributes.Builder()
                     .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)

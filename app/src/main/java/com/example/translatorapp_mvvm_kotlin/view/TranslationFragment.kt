@@ -21,6 +21,7 @@ import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
 import com.example.translatorapp_mvvm_kotlin.R
 import com.example.translatorapp_mvvm_kotlin.databinding.FragmentTranslationBinding
+import com.example.translatorapp_mvvm_kotlin.model.room.model.SavedTranslation
 import com.example.translatorapp_mvvm_kotlin.viewModel.LanguagesViewModel
 import com.example.translatorapp_mvvm_kotlin.viewModel.TranslationLanguageSharedViewModel
 import com.example.translatorapp_mvvm_kotlin.viewModel.TranslationViewModel
@@ -48,6 +49,7 @@ class TranslationFragment : Fragment() {
         sharedViewModel =
             ViewModelProviders.of(requireActivity())[TranslationLanguageSharedViewModel::class.java]
         viewModel = ViewModelProvider(this)[TranslationViewModel::class.java]
+        activity?.let { viewModel.setRoomRepository(it) }
         languageViewModel = ViewModelProvider(this)[LanguagesViewModel::class.java]
         binding.textFrom.addTextChangedListener {
             viewModel.setTextToTranslate(it.toString())
@@ -155,8 +157,20 @@ class TranslationFragment : Fragment() {
         binding.exchangeTranslations.setOnClickListener {
             sharedViewModel.exchangeLanguage()
         }
+        binding.saveTranslation.setOnClickListener {
+            val savedTranslation = SavedTranslation(
+                translationTextFrom = binding.languageFromHeader.text.toString(),
+                translationTextTo = binding.languageToHeader.text.toString(),
+                translationTextFrom_code = sharedViewModel.getSelectedFromCode().value,
+                translationTextTo_Code =sharedViewModel.getSelectedToCode().value,
+                translationTextFromText = viewModel.getTextToTranslate().value,
+                translationTextToText = viewModel.getTranslatedText().value
+            )
+            viewModel.bookmarkTranslation(savedTranslation)
+        }
     }
-    private fun speechToText(){
+
+    private fun speechToText() {
         val intent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH)
         // on below line we are passing language model
         // and model free form in our intent
@@ -191,11 +205,13 @@ class TranslationFragment : Fragment() {
                 .show()
         }
     }
-    private var resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult())
-    { result ->
+
+    private var resultLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult())
+        { result ->
             if (result.resultCode == Activity.RESULT_OK && result.data != null) {
-            // There are no request codes
-            val data: Intent? = result.data
+                // There are no request codes
+                val data: Intent? = result.data
                 val res: ArrayList<String> =
                     data?.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS) as ArrayList<String>
 
@@ -204,8 +220,8 @@ class TranslationFragment : Fragment() {
                 binding.textFrom.setText(
                     Objects.requireNonNull(res)[0]
                 )
+            }
         }
-    }
 
     private fun copyText(textToCopy: String) {
         activity?.applicationContext?.let { it1 -> viewModel.copyText(textToCopy, it1) }

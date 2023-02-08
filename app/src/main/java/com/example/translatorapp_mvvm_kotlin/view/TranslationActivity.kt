@@ -15,7 +15,7 @@ import com.example.translatorapp_mvvm_kotlin.databinding.ActivityTranslationBind
 class TranslationActivity : AppCompatActivity() {
     private lateinit var binding: ActivityTranslationBinding
     private lateinit var appBarConfiguration: AppBarConfiguration
-    private lateinit var navController:NavController
+    private lateinit var navController: NavController
     private lateinit var drawerLayout: DrawerLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,14 +23,15 @@ class TranslationActivity : AppCompatActivity() {
         binding = ActivityTranslationBinding.inflate(layoutInflater)
         setContentView(binding.root)
         navController = findNavController(R.id.fragmentContainerView)
-        drawerLayout=binding.drawerLayout
+        drawerLayout = binding.drawerLayout
         binding.navView.setupWithNavController(navController)
 
-        appBarConfiguration= AppBarConfiguration(navController.graph,drawerLayout)
+        appBarConfiguration = AppBarConfiguration(navController.graph, drawerLayout)
 
-        setupActionBarWithNavController(navController,appBarConfiguration)
+        setupActionBarWithNavController(navController, appBarConfiguration)
 
     }
+
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp(appBarConfiguration)
                 || super.onSupportNavigateUp()

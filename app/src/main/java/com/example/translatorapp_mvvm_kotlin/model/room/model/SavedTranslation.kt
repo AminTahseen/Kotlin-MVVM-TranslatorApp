@@ -8,7 +8,7 @@ import androidx.room.PrimaryKey
 data class SavedTranslation(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "savedTranslation_id")
-    val id: Int?,
+    val id: Int?=null,
 
     @ColumnInfo(name = "savedTranslation_from")
     val translationTextFrom: String?,

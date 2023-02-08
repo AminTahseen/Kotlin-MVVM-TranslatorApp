@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
     private fun setOnClickListeners(){
         binding.continueBTN.setOnClickListener {
             finish()
-            val translationActivity = Intent(MainActivity@this,TranslationActivity::class.java)
+            val translationActivity = Intent(this,TranslationActivity::class.java)
             startActivity(translationActivity)
         }
     }

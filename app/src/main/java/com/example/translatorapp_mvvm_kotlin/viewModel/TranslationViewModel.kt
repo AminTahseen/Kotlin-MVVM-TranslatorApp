@@ -98,12 +98,23 @@ class TranslationViewModel(
         }
     }
 
-    fun bookmarkTranslation(savedTranslation: SavedTranslation) {
-        Log.d("savedTranslation", savedTranslation.toString())
-        bookmarkTranslationSuspend(savedTranslation)
+    fun bookmarkTranslation(translationTextFrom:String,
+                             translationTextTo:String,
+                             translationTextFrom_code:String,
+                             translationTextTo_code:String,
+                             translationTextFromText:String,
+                             translationTextToText:String) {
 
+        val savedTranslation=SavedTranslation(
+            translationTextFrom=translationTextFrom,
+            translationTextTo=translationTextTo,
+            translationTextFrom_code=translationTextFrom_code,
+            translationTextTo_Code=translationTextTo_code,
+            translationTextFromText=translationTextFromText,
+            translationTextToText = translationTextToText
+        )
+       bookmarkTranslationSuspend(savedTranslation)
     }
-
     private fun bookmarkTranslationSuspend(savedTranslation: SavedTranslation) {
         viewModelScope.launch(Dispatchers.IO) {
             repository.insertSavedTranslation(savedTranslation)

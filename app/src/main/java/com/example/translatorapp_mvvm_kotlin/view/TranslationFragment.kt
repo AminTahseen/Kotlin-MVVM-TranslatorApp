@@ -158,15 +158,14 @@ class TranslationFragment : Fragment() {
             sharedViewModel.exchangeLanguage()
         }
         binding.saveTranslation.setOnClickListener {
-            val savedTranslation = SavedTranslation(
+            viewModel.bookmarkTranslation(
                 translationTextFrom = binding.languageFromHeader.text.toString(),
                 translationTextTo = binding.languageToHeader.text.toString(),
-                translationTextFrom_code = sharedViewModel.getSelectedFromCode().value,
-                translationTextTo_Code =sharedViewModel.getSelectedToCode().value,
-                translationTextFromText = viewModel.getTextToTranslate().value,
-                translationTextToText = viewModel.getTranslatedText().value
+                translationTextFrom_code = sharedViewModel.getSelectedFromCode().value.toString(),
+                translationTextTo_code = sharedViewModel.getSelectedToCode().value.toString(),
+                translationTextFromText = viewModel.getTextToTranslate().value.toString(),
+                translationTextToText = viewModel.getTranslatedText().value.toString()
             )
-            viewModel.bookmarkTranslation(savedTranslation)
         }
     }
 

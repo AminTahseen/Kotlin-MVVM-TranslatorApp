@@ -1,12 +1,13 @@
 package com.example.translatorapp_mvvm_kotlin.model
 
+import com.example.translatorapp_mvvm_kotlin.BuildConfig
+
 class Constants {
+
     companion object {
         const val TEXT_TO_SPEECH_API_URL = "https://voicerss-text-to-speech.p.rapidapi.com/"
-        const val TEXT_TO_SPEECH_RAPID_KEY = "9a24ce1b51msh48cccee00cc3e0fp1b0797jsn7ca7a7ab9b60"
-        const val TEXT_TO_SPEECH_API_KEY = "cc67873487d8425f97ce7ccedc52f4f6"
-        const val TEXT_TO_SPEECH_API_HOST = "voicerss-text-to-speech.p.rapidapi.com"
-
+        const val TEXT_TO_SPEECH_RAPID_KEY = BuildConfig.TEXT_TO_SPEECH_RAPID_KEY
+        const val TEXT_TO_SPEECH_API_KEY = BuildConfig.TEXT_TO_SPEECH_API_KEY
         const val API_URL = "https://api.mymemory.translated.net/"
         val countryCodeList = listOf(
             "am-ET", "ar-SA", "be-BY", "bem-ZM", "bi-VU", "bjs-BB",
